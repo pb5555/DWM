@@ -1,0 +1,83 @@
+#OLAP ORACLE
+
+CREATE TABLE sales_data (
+    Year NUMBER,
+    Quarter VARCHAR2(2),
+    Month VARCHAR2(3),
+    Product VARCHAR2(20),
+    Revenue NUMBER
+);
+
+
+
+INSERT INTO sales_data (Year, Quarter, Month, Product, Revenue)
+VALUES (2022, 'Q1', 'Jan', 'Product A', 1000);
+
+INSERT INTO sales_data (Year, Quarter, Month, Product, Revenue)
+VALUES (2022, 'Q1', 'Jan', 'Product B', 1500);
+
+INSERT INTO sales_data (Year, Quarter, Month, Product, Revenue)
+VALUES (2022, 'Q1', 'Feb', 'Product A', 1200);
+
+INSERT INTO sales_data (Year, Quarter, Month, Product, Revenue)
+VALUES (2022, 'Q1', 'Feb', 'Product B', 1600);
+
+INSERT INTO sales_data (Year, Quarter, Month, Product, Revenue)
+VALUES (2022, 'Q2', 'Apr', 'Product A', 1400);
+
+-- Insert more data to reach a minimum of 10 records
+INSERT INTO sales_data (Year, Quarter, Month, Product, Revenue)
+VALUES (2022, 'Q2', 'Apr', 'Product B', 1800);
+
+INSERT INTO sales_data (Year, Quarter, Month, Product, Revenue)
+VALUES (2022, 'Q2', 'May', 'Product A', 1100);
+
+INSERT INTO sales_data (Year, Quarter, Month, Product, Revenue)
+VALUES (2022, 'Q2', 'May', 'Product B', 1700);
+
+INSERT INTO sales_data (Year, Quarter, Month, Product, Revenue)
+VALUES (2022, 'Q3', 'Jul', 'Product A', 1300);
+
+INSERT INTO sales_data (Year, Quarter, Month, Product, Revenue)
+VALUES (2022, 'Q3', 'Jul', 'Product B', 1400);
+
+
+#ROLL UP on Quarter, Product
+SELECT Year, Quarter, Product, SUM(Revenue)
+FROM sales_data
+GROUP BY Year, Quarter, ROLLUP(Product);
+
+
+#ROLL DOWN on product A
+SELECT Year, Quarter, Month, Product, Revenue
+FROM sales_data
+WHERE Product = 'Product A';
+
+
+#SLICE on Quarter 1
+SELECT Year, Quarter, Month, Product, Revenue
+FROM sales_data
+WHERE Year = 2022 AND Quarter = 'Q1';
+
+
+#DICE on quarter 1, year, product A
+SELECT Year, Quarter, Month, Product, Revenue
+FROM sales_data
+WHERE Year = 2022 AND Quarter = 'Q1' AND Product = 'Product A';
+
+
+#PIVOT
+SELECT *
+FROM (
+    SELECT Year, Quarter, Product, Revenue
+    FROM sales_data
+    WHERE Year = 2022
+)
+PIVOT (
+    SUM(Revenue) FOR Quarter IN ('Q1' AS Q1, 'Q2' AS Q2, 'Q3' AS Q3, 'Q4' AS Q4)
+);
+
+
+
+
+

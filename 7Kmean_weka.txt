@@ -1,0 +1,3 @@
+Step 1: Selecting diabities.arff file from database
+Step 2: Select Cluster from above, and choose SimpleKMeans. Click on Start button.
+Step 3: Right click on SimpleKMeans and select Visualize cluster assignments.

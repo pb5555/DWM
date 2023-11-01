@@ -1,0 +1,5 @@
+Step 1: Selecting supermarket.arff from the dataset.
+Step 2: Click on Associate tab and select the algorithm for rule generation. Here we are
+selecting Apriori algorithm.
+Step 3: Click on start and observe the output. The output displays best rules and their
+confidence.

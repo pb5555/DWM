@@ -1,0 +1,31 @@
+Step 1: Select the dataset “breast-cancer” and open it
+Step 2: Check every attribute for missing values and visualizing each attribute
+Step 2: Check every attribute for missing values and visualizing each attribute
+
+REMOVING OUTLIERS FROM THE DATASET:
+Steps involved are as follow:
+Stepl: Select the dataset
+Step 2: To detect the outliers, from “Filter” section go to unsupervised -> attribute ->
+InterquartileRange and click on Apply
+Step 2: To detect the outliers, from “Filter” section go to unsupervised -> attribute ->
+InterquartileRange and click on Apply
+After applying filter save the file with different name and compare the original and updated file after
+removal of outliers
+Step 4: To remove the outliers, Select the newly saved(updated) file where we added outliers and
+Extreme Value attribute
+Step 5: In the Filter section, go to unsupervised instance -> RemovewithValues
+Step 5: In the Filter section, go to unsupervised instance -> RemovewithValues
+Step 6: Check the attribute “Outlier” again. We can see that there are no attributes present in YES
+label now. This indicates, we have successfully removed the outliers
+
+CLASSIFICATION USING WEKA:
+Decision Tree Classifier:
+Step 1: Open Weka and click on Explorer
+Step 2: Select iris.arff dataset from Open file section
+ classification algorithm to be executed on the dataset from
+“Choose” option. Here we have selected J48 algorithm under trees which create decision tree.
+Step 4: Click on start to execute the algorithm. The output can be seen in output window
+Step 5: to visualize the tree, Right click on result list and click on visualize tree
+
+Naive Bayes Classifier:
+Step 1: Select the Naves Bayes Classifier under Classifiers -> Bayes -> Naive Bayes and click on start

@@ -1,0 +1,40 @@
+EXP 4 
+
+CREATE TABLE sales_data (customer_id int primary key,
+product_id varchar(10) ,
+purchase_date DATE
+, purchase_amount int );
+
+INSERT INTO sales_data values (203 , 'A23' ,DATE '2023-07-12', 45000 );
+INSERT INTO sales_data values (208 , 'F03' ,DATE '2023-07-16', 39000 );
+INSERT INTO sales_data values (650 , 'I20' ,DATE '2023-07-17', 88000 );
+INSERT INTO sales_data values (113 , 'P63' ,DATE '2023-07-23', 13000 );
+INSERT INTO sales_data values (903 , 'U29' ,DATE '2023-07-25' , 50000 );
+INSERT INTO sales_data values (003 , 'V88' ,DATE '2023-08-01' , 55000 );
+INSERT INTO sales_data values (893 , 'Y67' ,DATE '2023-08-03' , 65000 );
+INSERT INTO sales_data values (296 , 'K12' ,DATE '2023-08-04' , 90000 );
+INSERT INTO sales_data values (211 , 'L25' ,DATE '2023-08-10' , 15000 );
+INSERT INTO sales_data values (223 , 'W10' ,DATE '2023-08-11' , 20000 );
+
+SELECT * FROM sales_data fetch first 5 rows only;
+
+SELECT AVG(purchase_amount) AS avg_purchase_amount,
+MIN(purchase_amount) AS min_purchase_amount,
+MAX(purchase_amount) AS max_purchase_amount,
+SUM(purchase_amount) AS total_purchase_amount
+FROM sales_data;
+
+SELECT product_id, COUNT(*) AS transaction_count
+FROM sales_data
+GROUP BY product_id
+ORDER BY transaction_count DESC; 
+
+
+SELECT customer_id, AVG(purchase_amount) AS avg_purchase_amount
+FROM sales_data GROUP BY customer_id 
+ORDER BY avg_purchase_amount DESC;
+
+UPDATE sales_data SET purchase_amount = (SELECT AVG(purchase_amount) FROM sales_data WHERE purchase_amount IS NOT NULL) WHERE purchase_amount IS NULL;
+
+UPDATE sales_data SET purchase_amount = LEAST(purchase_amount, 1000) WHERE purchase_amount > 1000;
+

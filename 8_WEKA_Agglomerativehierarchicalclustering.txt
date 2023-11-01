@@ -1,0 +1,5 @@
+Step 1: Selecting the iris.arff file from database.
+Step 2: Click on Cluster in the above tab, and select HierarchicalCluster, then click on
+Start button.
+Step 3: Data will be shown, Right click on HierarchicalCluster (highlighted below)
+and select the Visualize tree.

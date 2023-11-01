@@ -1,0 +1,165 @@
+-- Create Finance table
+CREATE TABLE Finance(
+    finance_id INT,
+    Funds INT,
+    Profits DECIMAL(10, 2),
+    Capital INT,
+    PRIMARY KEY (finance_id)
+);
+
+-- Create Orders table
+CREATE TABLE Orders(
+    order_id INT,
+    Date_placed DATE,
+    receipt_no INT,
+    shipping_code INT,
+    billing_code INT,
+    PRIMARY KEY (order_id)
+);
+
+-- Create Employee table
+CREATE TABLE Employee(
+    emp_id INT,
+    emp_name VARCHAR(20),
+    dept_name VARCHAR(20),
+    office_code INT,
+    PRIMARY KEY(emp_id)
+);
+
+-- Create Customer table
+CREATE TABLE Customer(
+    customer_id INT,
+    customer_name VARCHAR(20),
+    phone_no VARCHAR(10),
+    location VARCHAR(20),
+    PRIMARY KEY(customer_id)
+);
+
+-- Create Reviews table
+CREATE TABLE Reviews(
+    review_id INT,
+    rating DECIMAL(5, 2),
+    purchase_site VARCHAR(30),
+    PRIMARY KEY(review_id)
+);
+
+-- Create Promotion table
+CREATE TABLE Promotion(
+    promo_id INT,
+    start_date DATE,
+    end_date DATE,
+    target_increase DECIMAL(10, 2),
+    PRIMARY KEY(promo_id)
+);
+
+-- Create Product table
+CREATE TABLE Product(
+    product_id INT,
+    prod_name VARCHAR(20),
+    price INT,
+    release_date DATE,
+    PRIMARY KEY(product_id)
+);
+
+-- Create Company table
+CREATE TABLE Company(
+    company_id INT,
+    company_name VARCHAR(20),
+    sector VARCHAR(30),
+    est_date DATE,
+    PRIMARY KEY(company_id)
+);
+
+-- Create Sales table
+CREATE TABLE Sales(
+    sales_id INT,
+    finance_id INT,
+    emp_id INT,
+    order_id INT,
+    prod_id INT,
+    comp_id INT,
+    quantity INT,
+    PRIMARY KEY(sales_id),
+    FOREIGN KEY (finance_id) REFERENCES Finance(finance_id),
+    FOREIGN KEY (emp_id) REFERENCES Employee(emp_id),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (prod_id) REFERENCES Product(product_id),
+    FOREIGN KEY (comp_id) REFERENCES Company(company_id)
+);
+
+-- Create Brand table
+CREATE TABLE Brand(
+    brand_id INT,
+    promo_id INT,
+    review_id INT,
+    customer_id INT,
+    prod_id INT,
+    comp_id INT,
+    brand_name VARCHAR(20),
+    PRIMARY KEY(brand_id),
+    FOREIGN KEY (promo_id) REFERENCES Promotion(promo_id),
+    FOREIGN KEY (review_id) REFERENCES Reviews(review_id),
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    FOREIGN KEY (prod_id) REFERENCES Product(product_id),
+    FOREIGN KEY (comp_id) REFERENCES Company(company_id)
+);
+
+-- Insert data into the Finance table
+INSERT INTO Finance (finance_id, Funds, Profits, Capital) VALUES
+(1, 1000000, 50000, 200000),
+(2, 2000000, 100000, 400000),
+(3, 3000000, 150000, 600000);
+
+-- Insert data into the Orders table
+INSERT INTO Orders (order_id, Date_placed, receipt_no, shipping_code, billing_code) VALUES
+(1, '2023-08-12', 123456, 1000, 2000),
+(2, '2023-08-13', 234567, 2000, 3000),
+(3, '2023-08-14', 345678, 3000, 4000);
+
+-- Insert data into the Employee table
+INSERT INTO Employee (emp_id, emp_name, dept_name, office_code) VALUES
+(1, 'rohan', 'Sales', 100),
+(2, 'srushti', 'Marketing', 200),
+(3, 'siddhesh', 'Finance', 300);
+
+-- Insert data into the Customer table
+INSERT INTO Customer (customer_id, customer_name, phone_no, location) VALUES
+(1, 'Nihal', '123-456-7890', 'Thane'),
+(2, 'Sanika', '234-567-8901', 'Akola'),
+(3, 'Vedant', '345-678-9002', 'Vadala');
+
+-- Insert data into the Reviews table
+INSERT INTO Reviews (review_id, rating, purchase_site) VALUES
+(1, 4.5, 'Amazon'),
+(2, 5.0, 'Flipkart'),
+(3, 3.5, 'Bewakoof');
+
+-- Insert data into the Promotion table
+INSERT INTO Promotion (promo_id, start_date, end_date, target_increase) VALUES
+(1, '2023-08-15', '2023-09-15', 10.0),
+(2, '2023-09-16', '2023-10-16', 15.0),
+(3, '2023-10-17', '2023-11-17', 20.0);
+
+-- Insert data into the Product table
+INSERT INTO Product (product_id, prod_name, price, release_date) VALUES
+(1, 'iPhone 14 Pro', 1000, '2023-09-21'),
+(2, 'Galaxy S23 Ultra', 1200, '2023-08-20'),
+(3, 'Pixel 7 Pro', 800, '2023-07-21');
+
+-- Insert data into the Company table
+INSERT INTO Company (company_id, company_name, sector, est_date) VALUES
+(1, 'Apple', 'Technology', '1976-04-01'),
+(2, 'Samsung', 'Technology', '1938-03-01'),
+(3, 'Google', 'Technology', '1998-09-04');
+
+-- Insert data into the Sales table
+INSERT INTO Sales (sales_id, finance_id, emp_id, order_id, prod_id, comp_id, quantity) VALUES
+(1, 1, 1, 1, 1, 1, 5),
+(2, 2, 2, 2, 2, 2, 10),
+(3, 3, 3, 3, 3, 3, 15);
+
+-- Insert data into the Brand table
+INSERT INTO Brand (brand_id, promo_id, review_id, customer_id, prod_id, comp_id, brand_name) VALUES
+(1, 1, 1, 1, 1, 1, 'Apple'),
+(2, 2, 2, 2, 2, 2, 'Samsung'),
+(3, 3, 3, 3, 3, 3, 'Google');
